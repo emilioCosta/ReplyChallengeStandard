@@ -56,3 +56,17 @@ writeFile('output', data);
 function writeFile(fileName, data) {
     fs.writeFileSync(fileName, JSON.stringify(data), 'UTF-8');
 }
+
+function calculateAverageProjectLatency() {
+    data.providers.forEach(provider => {
+        provider.regions.forEach(region => {
+            const numeratorAverageLatencySum = region.package.units
+                .map((unit, i) => unit * region.latencies[i])
+                .reduce((a,b) => a+b);
+            const denominatorAverageLatencySum = region.package.units.reduce((a, b) => a+b);
+
+            const averageLatency = numeratorAverageLatencySum / denominatorAverageLatencySum;
+            
+        })
+    })
+}
